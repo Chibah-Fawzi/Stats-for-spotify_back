@@ -2,9 +2,14 @@
   "name": "statsforspotify",
   "version": "1.0.0",
   "main": "server.js",
+  "engines": {
+    "node": "12.18.3"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "npm build",
+    "heroku-postbuild": "npm build --prod"
   },
   "dependencies": {
     "cookie-parser": "^1.4.5",
