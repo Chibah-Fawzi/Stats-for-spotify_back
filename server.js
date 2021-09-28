@@ -14,9 +14,10 @@ var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 
 
-var client_id = 'b7bb22867cc64a9ea2fdbbbe972236d8'; // Your client id
-var client_secret = 'fc0f58491a86404b8645b85f164da801'; // Your secret
-var redirect_uri = 'https://statsforspotify.herokuapp.com/callback/'; // Your redirect uri
+var client_id = process.env.SPOTIFY_CLIENT_ID; // Your client id
+var client_secret = process.env.SPOTIFY_CLIENT_SECRET; // Your secret
+var redirect_uri = process.env.REDIRECT_URI; // Your redirect uri
+var frontend_uri = process.env.FRONTEND_URI; // Your frontend redirect uri
 
 /**
  * Generates a random string containing numbers and letters
@@ -105,16 +106,14 @@ app.get('/callback', function (req, res) {
         });
 
         // we can also pass the token to the browser to make requests from there
-        let uri = 'https://statsforspotify.vercel.app';
-        res.redirect(uri + '?access_token=' + access_token)
+        res.redirect(frontend_uri + '?access_token=' + access_token)
       }
     });
   }
 });
 
 app.get('/refresh_token', function (req, res) {
-  let uri = 'https://statsforspotify.vercel.app';
-  request.get(uri, req.query.refresh_token)
+  request.get(frontend_uri, req.query.refresh_token)
   // requesting access token from refresh token
   var refresh_token = "AQBd2IFCtO4gWCS_Ck_QENyPb_ixNdqTD5ktOYZ7aW8lGDO0gyALGymjV2xajxO7MStv7yD7PSyWVO-iiE1nPC7vUUGyizLae9suD7AI6XhR_tC9uHX14VAlRC-gJN2kmLw";
 
