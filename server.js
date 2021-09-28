@@ -105,7 +105,7 @@ app.get('/callback', function (req, res) {
         });
 
         // we can also pass the token to the browser to make requests from there
-        let uri = 'http://localhost:3000';
+        let uri = 'https://statsforspotify.vercel.app';
         res.redirect(uri + '?access_token=' + access_token)
       }
     });
@@ -113,7 +113,7 @@ app.get('/callback', function (req, res) {
 });
 
 app.get('/refresh_token', function (req, res) {
-  let uri = 'http://localhost:3000';
+  let uri = 'https://statsforspotify.vercel.app';
   request.get(uri, req.query.refresh_token)
   // requesting access token from refresh token
   var refresh_token = "AQBd2IFCtO4gWCS_Ck_QENyPb_ixNdqTD5ktOYZ7aW8lGDO0gyALGymjV2xajxO7MStv7yD7PSyWVO-iiE1nPC7vUUGyizLae9suD7AI6XhR_tC9uHX14VAlRC-gJN2kmLw";
